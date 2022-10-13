@@ -19,14 +19,14 @@ class ArticlesController < ApplicationController
       published_at: params[:published_at]
       )
     @article.save
-    render json: @article
+    render status: :created, json: @article if @article.valid?
   end
 
   def update
-    render :error
+    render status: :method_not_allowed
   end
 
   def destroy
-    render :error
+    render status: :method_not_allowed
   end
 end
